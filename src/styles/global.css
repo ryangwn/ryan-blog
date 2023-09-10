@@ -17,7 +17,7 @@
 	:root.dark {
 		color-scheme: dark;
 		--theme-bg: 210deg 6% 12%;
-		--theme-link: 330deg 49% 67%;
+		--theme-link: 267deg 19% 66%;
 		--theme-text: 220deg 3% 79%;
 		--theme-accent: 159deg 64% 45%;
 		--theme-accent-2: 0deg 0% 93%;
@@ -29,6 +29,6 @@
 	}
 
 	html body {
-		@apply mx-auto flex min-h-screen max-w-3xl flex-col bg-bgColor px-4 pt-16 font-mono text-sm font-normal text-textColor antialiased sm:px-8;
+		@apply mx-auto flex min-h-screen max-w-3xl flex-col bg-bgColor px-4 pt-6 font-mono text-sm font-normal text-textColor antialiased sm:px-8 sm:pt-16;
 	}
 }
