@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 
-/** 
+/**
 	Uses https://github.com/natemoo-re/astro-icon#readme
 	Find icons @ https://icones.js.org/
 */
@@ -9,27 +9,22 @@ const socialLinks = [
 	{
 		name: "mdi:github",
 		friendlyName: "Github",
-		link: "https://github.com/chrismwilliams/astro-cactus",
-	},
-	{
-		name: "mdi:mastodon",
-		friendlyName: "Mastodon",
-		link: "#",
+		link: "https://github.com/ryangwn",
 	},
 	{
 		name: "mdi:linkedin",
 		friendlyName: "LinkedIn",
-		link: "#",
+		link: "https://www.linkedin.com/in/ryantrong/",
 	},
 	{
 		name: "mdi:email",
 		friendlyName: "email",
-		link: "mailto:astro-cactus@chriswilliams.dev",
+		link: "mailto:ryan26.work@gmail.com",
 	},
 ];
 ---
 
-<div class="flex flex-wrap items-end gap-x-4">
+<div class="flex flex-wrap items-center gap-x-4">
 	<p>Find me on</p>
 	<ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
 		{
@@ -38,7 +33,7 @@ const socialLinks = [
 				return (
 					<li class="flex">
 						<a
-							class="inline-block p-1 sm:hover:text-link"
+							class="inline-block p-1"
 							href={link}
 							target="_blank"
 							rel={`noopener noreferrer me ${isEmail ? "authn" : ""}`}
