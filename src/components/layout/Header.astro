@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import ThemeToggle from "../ThemeToggle.astro";
-import Search from "../Search.astro";
 import { menuLinks } from "@/site-config";
 
 const url = new URL(Astro.request.url);
@@ -75,7 +74,6 @@ const logImageURL = new URL("/logo-illustration.png", url).href;
 			}
 		</nav>
 	</div>
-	<Search />
 	<ThemeToggle />
 	<button
 		id="toggle-navigation-menu"
