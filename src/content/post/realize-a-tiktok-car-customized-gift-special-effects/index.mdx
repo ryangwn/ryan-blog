@@ -1,0 +1,147 @@
+---
+title: "Realize a tiktok car customized gift special effects"
+publishDate: "11 Dec 2023"
+description: "Gift special effects are a common value-added gameplay in live broadcast rooms and chat rooms..."
+tags: ["animation"]
+---
+
+## Programing research
+### 1. Common dynamic format
+There are many kinds of web dynamic effects, and there are advantages and disadvantages between different file formats.
+Choosing relatively good solutions from the perspective of business needs is our goal.
+Common dynamic formats include gif, apng, webp, lottie, svga, mp4, etc. [3].
+#### 1.1 Gif
+Gif (Graphics interchange format)
+
+**Advantages:**
+- Many support platforms and good compatibility
+- `GIF9a` the version supports transparent
+
+**Disadvantages:**
+- Only 8-bits 256 colors are supported and color distortion, white-edge jaggedness, etc. will occur in a higher color range.
+- Translucent is not supported.
+- Large volume and high consumption of playback resources
+- It can only be played in a loop, and the animation cannot be accurately controlled (played and paused through third-party libraries such as libgif-js).
+
+Use:
+```html
+<img src="xxx.gif"/>
+```
+![car drift](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTFyZ2lvZ2M3MGFqNWZrZDVpdXVnbnh4YXFqcXRsMWhnMWtpaWFseSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/USQldFTYp0CFd2wmrc/giphy.gif)
+
+#### 1.2 apng
+APNG（Animated Portable Network Graphics)
+
+**Advantages:**
+- Many suport platforms and good compatibility
+- Keep backward compatibility with traditional PNG (browsers that do not support APNG will display the first frame as ordinary PNG)
+- Support 24-bit true color picture 8-bit Alpha transparent channel, support translucency, wide color range, high degree of reduction
+
+**Disadvantages:**
+- You can only set the number of plays or loop playback (can be converted to canvas playback and pause animation through third-party libraries such as apng-js)
+- For complex dynamic effects, it is large in size and has a long loading time.
+
+Use:
+```html
+<img src="xxx.png" />
+```
+
+#### 1.3 webp
+WebP (Web Picture) is a new generation of image format launched by Google in 2010. Its main goal is to provide better compression effects while maintaining or improving image quality. This format is designed to provide faster loading speed and response time when the web page is loaded, thus improving the user experience.
+
+**Advantages:**
+- Support both forms of lossy compression and lossless compression.
+- The compression algorithm is advanced, and the volume is smaller with the same quality.
+- Support transparency
+
+**Disadvantages:**
+- Poor compatibility of iOS devices
+- Only loop playback (can be converted to canvas playback and pause animation through third-party libraries such as freezeframe.js)
+
+Use:
+```html
+<img src="xxx.webp" />
+```
+
+#### 1.4 lottie
+Lottie?
+
+**Advantages:**
+- Json files can be edited twice
+- High control, you can set whether to play automatically, loop, play speed, etc., and you can monitor playback events.
+- It can be zoomed in or out without distortion.
+- Small size
+
+**Disadvantages:**
+- The analysis of the slow curve takes up a lot of memory.
+- Poor support for complex particle effects
+
+Use:
+
+Use lottie-web for lottie dynamic playback
+
+```command
+pnpm add lottie-web
+```
+```js
+import lottie from 'lottie-web'
+
+lottie.loadAnimation({
+  container: xxxElement,
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: 'xxx.json'
+});
+```
+
+#### 1.5 svga
+SVGA?
+
+**Advantages:**
+- The library volume and animation file volume are small.
+- Support sequence frame dynamic effect
+
+**Disadvantages:**
+- Some special effects are not supported as good.Lottie
+- Long decoding time, high memory consumption for long playback
+
+Use:
+
+```command
+pnpm add svga
+```
+
+```js
+import { Parser, Player } from 'svga'
+
+const parser = new Parser()
+const svga = await parser.load('xxx.svga')
+
+const player = new Player(document.getElementById('canvas'))
+await player.mount(svga)
+
+player.start()
+```
+
+#### 1.6 mp4
+
+**Advantages:**
+- High compatibility
+- Perfectly restored design
+- High compression rate and small size
+- Support side-by-side broadcast, no need to wait for the whole file to be downloaded.
+- Support audio
+- The output is simple
+
+**Disadvantages:**
+- It does not support transparency, large-scale dynamic effect blocking user interface, poor visual effect
+
+Use:
+
+```html
+<video src='xxx.mp4' />
+```
+
+### 2. Video fusion
+
