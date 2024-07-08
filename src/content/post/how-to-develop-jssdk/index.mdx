@@ -1,0 +1,100 @@
+---
+title: "How to develop JSSDK"
+description: "SDK is `Software Development Kit`, JSSDK which is a collection of exposed functions to developers to help the front-end realize specific needs"
+publishDate: "08 Jul 2024"
+tags: ["js", "tool"]
+---
+
+# Definition and Classification of SDK
+
+## What is SDK
+
+SDK is `Software Development Kit`, JSSDK which is a collection of exposed functions to developers to help the front-end realize specific needs.
+JS-API Developers can use it to intergrate and use certain specific functions in web pages, such as social sharing, map services, payment functions, etc. It usually includes the followinf modules:
+
+1. Javascript Library: This is SDk the core part of the app, which contains a series of pre-written Javascript codes that impelement some specific functions,
+series as user authentication, data analysis, social sharing, etc.
+
+2. API Documentation: This part of the documentation describles in detail how to use JSSDK each feature in the package.
+It usually contains a list of functions and methods, and how to use them.
+
+3. Sample code: This part of the code shows how to use it in a real project JSSDK. By reading and running the sample code,
+developers can better understand how to use it JSSDK.
+
+## Classification of JSSDK
+
+JSSDK The classification of SDKs mainly depends on the functions and services they provide.
+Usually, they are divided into: `UI component library`, `JS tool libray`, `analysis and statistics SDK`, `social media SDK according to their functions`.
+
+**UI Component**: By encapsulating a series of components and helping developers call them through configuration, some UI effects can be achieved, such as: `Antd`, `ElementUI`, `Vant`, etc.
+
+**JS tool library**: By implementing a class of commonly used methods, it is easy to develop and process data without having to consider compatibility.
+Commonly used methods includes: `lodash`, `moment`, etc.
+
+**Analysis and statistics SDK**: Through the API, monitor the front-end system's error reporting,
+statistical data, and data reporting, such asL `Sentry`, `Google Analytics`, etc.
+
+**Social media SDK**: WeChat SDK, Facebook SDK etc.
+
+# How to design JSSDK
+
+## Principles to follow when designing SDK
+
+![](/princple-follow-to-design-sdk.png)
+
+**Single responsibility princple**: SDk is generally designed to meet the needs of a certain type business, so the business scope must be clearly defined at the beginning of the design.
+If the functions are too comples, they can be split into several independent SKDs, and the relevant logic can be introduced into the main SDK,
+which facilitates functional decouping and testing.
+
+**The principle of least available and least dependency**: If you can use a certain method to impelement it,
+don't make it complicated. The SDK should reduce depenencies, and some tool libraries should be used if possible.
+Try to impelement necessary methods by yourself, or introduce as few libraries as possible.
+Otherwise, the SDK will be too large after packaging, or there will be compatibility issues by updated versions.
+
+**Stability principle**: Maintain sufficent stability if the SDK. On the one hand keep the API method stable. On the other hand,
+when designing the API input paramesters, use object types for parameters,
+so that it is easy to add more paramesters in the future.
+If the SDK us upgraded, concept compatibility with the old version. New functions should add new APIs, and old APIs should not be deleted.
+
+**Ease of use princple**: To meet the principle of ease of use, we must first have a concise API.
+Clear method comments, documentation and sample code are very important.
+No matter how beatifully the SDK is written, the first thing users come into contact with is the access documentation, and then the sample code covering all APIs.
+A good example code can achieve twice the result with haft the effort.
+
+## Language and build tool selection
+
+### `ts` vs `js`:
+
+- Type system
+- Better tool support
+
+### Rollup vs Webpack:
+
+
+## Implementation OF SDK core functions
+
+### Project structure
+
+`src`: source code
+
+- api/index.ts: API encapsulation for network requests
+- core/index.ts: Core entry file
+- core/dependencies.ts: Core logic implementation file
+- style/index.css: Style file
+- types/index.ts: Declared type file
+- utils/constants.ts: Constants file
+- utils/http.ts: Network request encapsulation library
+- utils/indexts: utility functions
+- utils/pv.ts: Routing monitoring processing function
+
+### API design
+
+![](/api-design.png)
+
+SDK API The design are divided into two categories according to their functions `life cycle methods` `instance method`
+
+- Lifecycle methods: manily the SDK's lifecycle callback functions: from the init initialization method to the questionnaire openning and closing callbacks.
+- Instance method: responsible for specific business implementation
+
+
+`Note: It should be noted that when designing external APIs, each API must have callback after the method is executed to facilitate users to excute subsequent logic.`
